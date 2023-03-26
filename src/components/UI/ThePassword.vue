@@ -18,4 +18,8 @@ const validPassword = computed(() => password.value.length > 8 && password.value
 
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.signup_password{
+    box-shadow: 0px 0px 95px 0px rgba(0, 0, 0, 0.2);
+}
+</style>

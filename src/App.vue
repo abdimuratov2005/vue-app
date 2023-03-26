@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <the-body>
-      <the-header></the-header>
       <router-view></router-view>
     </the-body>
   </div>
@@ -9,7 +8,6 @@
 
 <script setup>
 import TheBody from '@/components/UI/TheBody.vue';
-import TheHeader from '@/components/TheHeader.vue';
 </script>
 
 <style lang="scss">

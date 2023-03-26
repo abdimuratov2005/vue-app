@@ -13,13 +13,15 @@
 
             <!-- Начало CheckBox -->
             <b-form-group class="mt-5">
+                
                 <b-form-checkbox-group
+
                     :options="options"
                     name="checkbox-validation"
                     v-model="valueLang"
                     :state="validLang"
                     buttons
-                    class="languages_btns"
+                    class="languages_btns d-flex flex-column"
                     @click="validLang"
                 >
                 </b-form-checkbox-group>
@@ -34,12 +36,12 @@
             <!-- Начало Блока Кнопки -->
 
             <b-link
-                to="signup" 
+                to="signup"
                 class="text-decoration-none"
             >
                 <the-button
                     block 
-                    class="languages_btnContinue text-center"
+                    class="languages_btnContinue text-center position-relative"
                 >
                     <span class="text-center">Далее</span>
                     <img loading="lazy" class="arrowIcon" src="@/assets/icons/arrow.png">
@@ -70,14 +72,14 @@ const options = ref([ // Массив кнопки
     {text: 'Русский', value: 'Русский'},
     {text: 'English', value: 'English'},
     {text: 'Español', value: 'Español'},
-])
-const validLang = computed(() => valueLang.value.length >= 1) // Валидация появление кнопки
+]);
+const validLang = computed(() => valueLang.value.length >= 1); // Валидация появление кнопки
 </script>
 
 <style lang="scss">
 label.btn{
-    margin: 20px 0px 0px 0px !important;
-    border-radius: 40px 40px !important;
+    margin-top: 20px !important;
+    border-radius: 40px !important;
     height: 7vh;
     display: flex;
     padding: 30px;
@@ -85,25 +87,18 @@ label.btn{
     text-align: start;
     border: none;
     outline: none;
-    &:hover{
-        background: linear-gradient(45deg, #59be86, #339860) !important;
-    }
+    &:hover, 
     &:focus{
         background: linear-gradient(45deg, #59be86, #339860) !important;
     }
 }
 .languages {
-    &_btns {
-        display: flex;
-        flex-direction: column;
-    }
     &_btnContinue{
         border-radius: 30px;
         max-width: 319px;
         max-height: 70px;
         margin: 0 0 150px 15px;
-        position: relative;
-        top: 100px;
+        top: 2rem;
         z-index: 111;
     }
 }

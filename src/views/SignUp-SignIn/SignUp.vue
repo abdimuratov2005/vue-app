@@ -1,9 +1,14 @@
 <template>
+    
     <b-container class="signup">
         <!-- Carousel -->
         <the-carousel></the-carousel>
         <!-- Начало Авторизация & Регистрация -->
-        <div v-if="resetPass == false" class="signup__btn">
+
+        <div 
+            v-if="resetPass == false" 
+            class="signup__btn d-flex"
+        >
             <div
                 @click="isReg = true"
             >
@@ -32,14 +37,22 @@
         <div class="my-4">
             <b-form @submit.prevent>
                 <div 
-                    v-if="isReg == true && resetPass == false" 
-                    class="signup_socIcons"
+                    v-if="isReg && resetPass == false" 
+                    class="signup_socIcons d-flex w-100 justify-content-center"
                 >
                     <b-link class="signup_btnIcon">
-                        <img loading="lazy" class="signup_icon" src="@/assets/img/vk.png">
+                        <img 
+                            loading="lazy" 
+                            class="signup_icon" 
+                            src="@/assets/img/vk.png"
+                        >
                     </b-link>
                     <b-link class="signup_btnIcon">
-                        <img loading="lazy" class="signup_icon" src="@/assets/img/g+.png">
+                        <img 
+                            loading="lazy" 
+                            class="signup_icon" 
+                            src="@/assets/img/g+.png"
+                        >
                     </b-link>
                 </div>
             <!-- Конещ Регистрация через ВК и Гугл+ -->
@@ -49,33 +62,72 @@
                 
                 <the-password class="py-4" v-if="resetPass == false && isReg == false"></the-password>
                     <!-- Checkbox -->
-                <div class="checkbox" :class="{isActive : resetPass == true}">
+                <div 
+                    class="checkbox text-nowrap" 
+                    :class="{isActive : resetPass == true}"
+                >
                     <div class="d-flex align-items-center justify-content-between my-3">
-                        <div class="signup_checkbox" @click="checkbox =! checkbox" :class="{isActive : checkbox}">
-                            <b-form-checkbox id="checkbox-1"  name="checkbox-1" value="accepted" unchecked-value="not_accepted" plain>
+                        <div 
+                            class="signup_checkbox" 
+                            @click="checkbox =! checkbox" 
+                            :class="{isActive : checkbox}"
+                        >
+                            <b-form-checkbox 
+                                id="checkbox-1" 
+                                name="checkbox-1" 
+                                value="accepted" 
+                                unchecked-value="not_accepted" 
+                                plain
+                            >
                                 Запомнить меня
                             </b-form-checkbox>
                         </div>
-                        <div class="signup_lang">Язык: <span>Русский</span></div>
+                        <div class="signup_lang">
+                            Язык: 
+                            <span class="text-success">
+                                Русский
+                            </span>
+                        </div>
                     </div>
                 </div>
             <!-- Конец Форума -->
+
             <!-- Начало Кнопки Регистрации / Войти -->
-                <b-link to="setperson" class="text-decoration-none signup_submit">
-                    <the-button v-if="isReg" class="signup_submit-btn text-center" type="submit" block>
+                <b-link 
+                    to="setperson" 
+                    class="text-decoration-none signup_submit position-relative"
+                >
+                    <the-button 
+                        v-if="isReg" 
+                        class="signup_submit-btn text-center" 
+                        type="submit" 
+                        block
+                    >
                         Присоедениться
                     </the-button>
-                    <the-button v-else-if="resetPass" class="signup_submit-btn text-center" type="submit" block>
+
+                    <the-button 
+                        v-else-if="resetPass" 
+                        class="signup_submit-btn text-center" 
+                        type="submit" 
+                        block
+                    >
                         Выслать новый пароль
                     </the-button>
-                    <the-button v-else-if="isReg == false" class="signup_submit-btn text-center" type="submit" block>
+                    
+                    <the-button 
+                        v-else-if="isReg == false"
+                        class="signup_submit-btn text-center" 
+                        type="submit" 
+                        block
+                    >
                         Войти
                     </the-button>
                 </b-link>
                 
                 <div class="text-center mt-4 signup_forgotPassword">
                     <div @click="resetPass =! resetPass">
-                        <b-link class="text-decoration-none">
+                        <b-link class="text-decoration-none text-dark">
                             Забыли свой пароль?
                         </b-link>
                     </div>
@@ -103,39 +155,8 @@ const resetPass = ref(false);
 </script>
 
 <style lang="scss">
-
-.rounded-first{
-    border-radius: 30px 0 0 30px;
-}
-.rounded-second{
-    border-radius: 0 30px 30px 0;
-}
-
 .signup {
-    // .signup__container
-
-    &_socIcons {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    
-    &__container {
-        padding: 0 30px;
-    }
-    &_btnIcon{
-        background-color: inherit;
-        box-shadow: none;
-    }
-    &_icon {
-        width: 50px;
-        height: 50px;
-        &:first-child{
-            margin: 0px 0px 0px 5px;
-        }
-    }
     &__btn{
-        display: flex;
         background: #fff;
         border-radius: 20px;
         div{
@@ -162,16 +183,18 @@ const resetPass = ref(false);
             }
         }
     }
-    &_lang{
-        span{
-            color: green;
+    &_btnIcon{
+        background-color: inherit;
+        box-shadow: none;
+    }
+    &_icon {
+        width: 50px;
+        height: 50px;
+        &:first-child{
+            margin: 0px 0px 0px 5px;
         }
     }
-    &_password{
-        box-shadow: 0px 0px 95px 0px rgba(0, 0, 0, 0.2);
-    }
     &_checkbox{
-        white-space: nowrap;
         input[type=checkbox]{
             appearance: none;
             width: 15px;
@@ -198,7 +221,6 @@ const resetPass = ref(false);
         }
     }
     &_submit{
-        position: relative;
         top: 10px;
     }
     &_submit-btn{
@@ -206,9 +228,10 @@ const resetPass = ref(false);
         background: linear-gradient(45deg, #59be86, #339860) !important;
     }
 }
+
 .checkbox{
     &.isActive{
-        margin: 135px 0px 0 0px;
+        margin: 135px 0 0 0;
     }
 }
 .item-img{

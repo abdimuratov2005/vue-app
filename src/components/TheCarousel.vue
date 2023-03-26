@@ -98,7 +98,7 @@ const sliderImg = [
     position: absolute;
     top: -15px;
     left: 85%;
-    bottom: -80px;
+    bottom: -50px;
     flex-direction: column;
     li{
         box-sizing: content-box;
