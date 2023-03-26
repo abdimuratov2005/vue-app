@@ -38,6 +38,19 @@
 import {BCard, BRow, BCol} from 'bootstrap-vue'
 </script>
 <style lang="scss" scoped>
+.favorite{
+    position: absolute;
+    right: 25px;
+    width: 50px;
+    top: 15px;
+}
+
+.span-text{
+    position: relative;
+    left: -37px;
+    top: 2px;
+}
+
 @media (max-width: 767.98px){
     .premiume{
     position: relative;

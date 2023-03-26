@@ -4,7 +4,7 @@
             id="carousel-1"
             indicators
             interval="15000"
-            class="carousel-img"
+            class="w-100 h-100 z-index-0"
             @sliding-start="onSlideStart"
             @sliding-end="onSlideEnd"
             >
@@ -31,11 +31,8 @@ const uploadPhotos = ref([
 </script>
 
 <style lang="scss">
-.carousel-img{
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    // pointer-events: none;
+.z-index-0{
+    z-index: 0;
 }
 .carousel-indicators{ 
     position: absolute;
@@ -60,17 +57,5 @@ const uploadPhotos = ref([
             background-color: #3cb371;
         }
     }
-}
-
-.favorite{
-    position: absolute;
-    right: 25px;
-    width: 50px;
-    top: 15px;
-}
-.span-text{
-    position: relative;
-    left: -37px;
-    top: 2px;
 }
 </style>

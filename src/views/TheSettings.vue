@@ -2,7 +2,10 @@
     <div>
         <div class="userphoto position-relative">
             <div class="d-flex justify-content-center">
-                <the-card style="width: 340px;" class="user-card"></the-card>
+                <the-card 
+                    style="width: 340px;" 
+                    class="user-card"
+                ></the-card>
             </div>
             <the-user-home></the-user-home>
         </div>

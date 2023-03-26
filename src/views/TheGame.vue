@@ -3,23 +3,43 @@
         <div class="userphoto position-relative">
         <TheUserHome></TheUserHome>
         <div class="d-flex justify-content-center">
-            <the-card style="width: 340px;" class="user-card"></the-card>
+            
+            <the-card 
+                style="width: 340px;" 
+                class="user-card"
+            ></the-card>
+
         </div>
-        <b-container class=" game-smile">
-            <p>Смайлы | <span class="text-success">Угадать изображение: {{ dataCount.count }}</span></p>
+        <b-container class="game-smile">
+            <p>
+                Смайлы | 
+                <span class="text-success">
+                    Угадать изображение: {{ count }}
+                </span>
+            </p>
             <b-row>
                 <b-col
-                    v-for="item in dataCount.smileCards"
-                    :key="item.id"
+                    v-for="card in smileCards"
+                    :key="card.id"
                     class="position-relative"
-                    :class="{active : item.active}"
-                    @click="item.active = true"
+                    :class="{ active : card.active }"
+                    @click="addCount()"
                 >
                     <img
                         loading="lazy"
                         class="smileImg"
-                        @click="dataCount.addCount()"
-                        :src="item.src"
+                        @click="card.active = true && card.trueCard || card.trueCard == false"
+                        :src="card.src"
+                    >
+                    <img
+                        v-if="card.active && card.trueCard"
+                        :src="trueCard"
+                        class="trueCard"
+                    >
+                    <img
+                        v-if="card.active && card.trueCard == false"
+                        :src="falseCard"
+                        class="falseCard"
                     >
                 </b-col>
             </b-row>
@@ -37,38 +57,38 @@ import smile2 from '@/assets/icons/Smiles/Кайфующий.png';
 import smile3 from '@/assets/icons/Smiles/Влюбленный.png';
 import smile4 from '@/assets/icons/Smiles/в-кепке.png';
 import smile5 from '@/assets/icons/Smiles/Очарованный.png';
-import { reactive } from 'vue';
-const dataCount = reactive({
-    count: 0,
-    active: false,
-    smileCards: [
-        { id: 1, src: smile1, active: false },
-        { id: 2, src: smile2, active: false },
-        { id: 3, src: smile3, active: false },
-        { id: 4, src: smile4, active: false },
-        { id: 5, src: smile5, active: false },
-    ],
-    addCount() {
-        this.count += 1
-        if (this.count >= 4){
-            this.count = 0
-            this.smileCards[0].active = false
-            this.smileCards[1].active = false
-            this.smileCards[2].active = false
-            this.smileCards[3].active = false
-            this.smileCards[4].active = false
+import trueCard from '@/assets/icons/true-icon.png';
+import falseCard from '@/assets/icons/false-icon.png';
+import { ref } from 'vue';
+const count = ref(5);
+const smileCards = ref([
+    { id: 1, src: smile1, active: false, trueCard: Math.random() > .5 },
+    { id: 2, src: smile2, active: false, trueCard: Math.random() > .5 },
+    { id: 3, src: smile3, active: false, trueCard: Math.random() > .5 },
+    { id: 4, src: smile4, active: false, trueCard: Math.random() > .5 },
+    { id: 5, src: smile5, active: false, trueCard: Math.random() > .5 },
+]);
+const addCount = () => {
+    count.value -= 1;
+    smileCards.value.forEach(card => {
+        if( count.value == 0 ) {
+            card.active = false
+            location.reload()
         }
-    }
-})
+    })
+    if (count.value == 0) count.value = 5
+}
 </script>
 
 <style lang="scss" scoped>
 .game-smile{
     margin: 0px 0px 100px 0px;
 }
-
-.true-icon{
+.trueCard,
+.falseCard{
     position: absolute;
+    width: 40px;
+    height: 40px;
 }
 .carousel-img {
     width: 100%;
@@ -101,7 +121,20 @@ const dataCount = reactive({
         background-color: #f4f4f4;
     }
     &.active{
-        background-color: #59be86;
+        & > .trueCard,
+        & > .falseCard {
+            opacity: .5;
+            width: 66px;
+            height: 55px;
+            top: -0px;
+            border-radius: 10px;
+        }
+        & > .trueCard{
+            background: #369c63;
+        }
+        & > .falseCard{
+            background: #fdcf6b;
+        }
     }
 }
 </style>
