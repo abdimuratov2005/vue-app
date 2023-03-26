@@ -1,4 +1,4 @@
-# zakaz
+# vue-project
 
 ## Project setup
 ```
