@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center">
             
             <the-card 
-                style="width: 340px;" 
+                style="width: 340px;"
                 class="user-card"
             ></the-card>
 
@@ -23,17 +23,19 @@
                     :key="card.id"
                     class="position-relative"
                     :class="{ active : card.active }"
-                    @click="addCount()"
                 >
-                    <img
-                        loading="lazy"
-                        class="smileImg"
-                        @click="card.active = true && card.trueCard || card.trueCard == false"
-                        :src="card.src"
-                    >
+                    <div @click="addCount">
+                        <img
+                            loading="lazy"
+                            class="smileImg"
+                            @click="card.active = true && card.trueCard || card.trueCard == false"
+                            :src="card.src"
+                        >
+                    </div>
                     <img
                         v-if="card.active && card.trueCard"
                         :src="trueCard"
+                        role="img"
                         class="trueCard"
                     >
                     <img
@@ -72,10 +74,14 @@ const addCount = () => {
     count.value -= 1;
     smileCards.value.forEach(card => {
         if( count.value == 0 ) {
-            card.active = false
-            location.reload()
+            card.active = false // reset
+            card.trueCard > .5 
+                ? 
+            location.href = 'win' 
+                : 
+            location.href = 'lose'
         }
-    })
+    });
     if (count.value == 0) count.value = 5
 }
 </script>
@@ -89,6 +95,7 @@ const addCount = () => {
     position: absolute;
     width: 40px;
     height: 40px;
+    z-index: 111;
 }
 .carousel-img {
     width: 100%;

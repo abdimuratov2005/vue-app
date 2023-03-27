@@ -1,7 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
+  
   {
     path: '/',
+    component: () => import('@/views/FastTransition.vue')
+  },
+  {
+    path: '/selectLanguage',
     component: () => import('@/views/SignUp-SignIn/selectLanguage.vue')
   },
   {
