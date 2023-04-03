@@ -1,4 +1,4 @@
-# vue-project
+# App with Bootstrap-Vue 
 
 ## Project setup
 ```
